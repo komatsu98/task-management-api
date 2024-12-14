@@ -1,0 +1,66 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# C extensions
+*.so
+
+# Virtual environment
+venv/
+.env/
+.venv/
+
+# VS Code settings
+.vscode/
+
+# Pytest cache
+.pytest_cache/
+.cache/
+
+# Mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+
+# Logs
+*.log
+logs/
+
+# Static files
+staticfiles/
+
+# Local environment variables
+.env
+
+# Alembic migrations
+migrations/versions/*.pyc
+
+# Docker
+*.swp
+Dockerfile~
+docker-compose.override.yml
+
+# IDE-specific files
+.idea/
+
+# Test and coverage reports
+.coverage
+coverage.xml
+htmlcov/
+
+# Dependency directories
+pip-wheel-metadata/
+poetry.lock
+poetry.lock~
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# macOS system files
+.DS_Store

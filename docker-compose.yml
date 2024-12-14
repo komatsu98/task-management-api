@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespw
+      POSTGRES_DB: task_management
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  migration:
+    build:
+      context: .
+      dockerfile: Dockerfile.migration
+    command: alembic upgrade head
+    environment:
+      DATABASE_URI: postgresql://postgres:postgrespw@db:5432/task_management
+      JWT_SECRET_KEY: your-secret-key
+    depends_on:
+      - db
+  
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URI: postgresql://postgres:postgrespw@db:5432/task_management
+      JWT_SECRET_KEY: your-secret-key
+
+    
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    environment:
+      DATABASE_URI: postgresql://postgres:postgrespw@192.168.1.11:5434/test
+      JWT_SECRET_KEY: your-secret-key
+
+volumes:
+  db_data:
